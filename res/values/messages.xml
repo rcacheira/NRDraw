@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="message_load_ok">Drawing was successfully loaded</string>
+    <string name="message_load_n_ok">An error as occurred while loading Drawing</string>
+    
+    <string name="message_save_ok">Drawing was successfully saved</string>
+    <string name="message_save_n_ok">An error as occurred while saving Drawing</string>
+    
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="button_save">Save</string>
+    <string name="button_load">Load</string>
+    <string name="button_clear">Clear</string>
+    
+    <string name="dialog_title_save">Save Drawing</string>
+    <string name="dialog_title_load">Load Drawing</string>
+    
+</resources>
