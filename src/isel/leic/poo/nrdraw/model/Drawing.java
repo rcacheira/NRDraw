@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Class whose instance represents a drawing
  * 
- * A Drawing is represented by a set of lines
+ * A Drawing contains a set of lines
  * 
  * @author rcacheira & nreis
  *

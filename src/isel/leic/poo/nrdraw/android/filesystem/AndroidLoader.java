@@ -25,16 +25,22 @@ public class AndroidLoader extends Loader{
 
 	public void load(){
 		try{
-			super.doOperation();
-			view.invalidate();
+			doOperation();
 		}
 		catch(IOException e){
 			e.printStackTrace();
 			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.setPositiveButton(R.string.button_ok,null);
 			builder.setTitle(R.string.dialog_title_load);
 			builder.setMessage(R.string.message_load_n_ok);
 			builder.show();
 		}
+	}
+	
+	@Override
+	public void doOperation() throws IOException {
+		super.doOperation();
+		view.invalidate();
 	}
 	
 	@Override

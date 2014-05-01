@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import isel.leic.poo.nrdraw.model.Point;
 
-public class AndroidPoint extends Point implements Drawable{
+public class AndroidPoint extends Point implements AndroidDrawable{
 
 	public AndroidPoint(float x, float y) {
 		super(x, y);

@@ -10,10 +10,28 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Class whose instance represents a Drawing Loader
+ * 
+ * @author rcacheira
+ *
+ */
 public abstract class Loader extends FileOperation{
+	/**
+	 * InputStream used to manipulate the file
+	 */
 	protected FileInputStream fileInputStream;
+	/**
+	 * Instance of line that represent the line being loaded
+	 */
 	private Line lineLoading;
 	
+	/**
+	 * Initiates an instance of Loader with the given fileName and Drawing
+	 * 
+	 * @param fileName File on which the action is taken
+	 * @param drawing Drawing on which the action is taken
+	 */
 	public Loader(String fileName, Drawing drawing) {
 		super(fileName, drawing);
 		this.fileInputStream = null;
@@ -38,8 +56,8 @@ public abstract class Loader extends FileOperation{
 			drawing.add(lineLoading);
 		}
 		else if(AndroidPoint.isObjectString(s)){
-			lineLoading.add(createPoint(getFloatValueFromString(s, "x"),
-					getFloatValueFromString(s, "y")));
+			lineLoading.add(createPoint(parseFloatValue(s, "x"),
+					parseFloatValue(s, "y")));
 		}
 		else{
 			System.out.println("Unrecognized Line[" + s + "]");
@@ -50,7 +68,8 @@ public abstract class Loader extends FileOperation{
 	
 	protected abstract Point createPoint(float x, float y);
 	
-	@Override
-	protected abstract void openFile() throws FileNotFoundException;
+	protected void openFile() throws FileNotFoundException{
+		fileInputStream = new FileInputStream(fileName);
+	}
 	
 }

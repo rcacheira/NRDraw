@@ -23,7 +23,7 @@ public abstract class Saver extends FileOperation{
 		p.close();
 	}
 
-	@Override
-	protected abstract void openFile() throws FileNotFoundException;
-	
+	protected void openFile() throws FileNotFoundException{
+		fileOutputStream = new FileOutputStream(fileName, false);
+	}
 }

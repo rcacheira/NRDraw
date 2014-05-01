@@ -18,11 +18,17 @@ public class AndroidSaver extends Saver{
 		this.activity = activity;
 	}
 	
+	@Override
+	protected void openFile() throws FileNotFoundException {
+		fileOutputStream = activity.openFileOutput(fileName, 0);
+	}
+	
 	public void save() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+		builder.setPositiveButton(R.string.button_ok,null);
 		builder.setTitle(R.string.dialog_title_save);
 		try{
-			super.doOperation();
+			doOperation();
 			builder.setMessage(R.string.message_save_ok);
 		}
 		catch(IOException e){
@@ -30,11 +36,6 @@ public class AndroidSaver extends Saver{
 			builder.setMessage(R.string.message_save_n_ok);
 		}
 		builder.show();
-	}
-	
-	@Override
-	protected void openFile() throws FileNotFoundException {
-		fileOutputStream = activity.openFileOutput(fileName, 0);
 	}
 	
 }

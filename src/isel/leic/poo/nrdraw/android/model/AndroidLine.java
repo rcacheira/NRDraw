@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import isel.leic.poo.nrdraw.model.Line;
 import isel.leic.poo.nrdraw.model.Point;
 
-public class AndroidLine extends Line implements Drawable{
+public class AndroidLine extends Line implements AndroidDrawable{
 	
 	public AndroidLine(){
 		super();
