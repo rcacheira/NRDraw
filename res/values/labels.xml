@@ -4,6 +4,7 @@
     <string name="button_save">Save</string>
     <string name="button_load">Load</string>
     <string name="button_clear">Clear</string>
+    <string name="button_ok">OK</string>
     
     <string name="dialog_title_save">Save Drawing</string>
     <string name="dialog_title_load">Load Drawing</string>

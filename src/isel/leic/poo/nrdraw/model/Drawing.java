@@ -1,17 +1,26 @@
 package isel.leic.poo.nrdraw.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
  * Class whose instance represents a drawing.
  * 
+<<<<<<< HEAD
  * A Drawing is represented by a set of lines.
+=======
+ * A Drawing contains a set of lines
+>>>>>>> Ricardo
  * 
  * @author rcacheira & nreis
  *
  */
-public class Drawing {
+public abstract class Drawing implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The Drawing's set of lines.
 	 */
