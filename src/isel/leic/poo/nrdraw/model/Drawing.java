@@ -4,28 +4,28 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Class whose instance represents a drawing
+ * Class whose instance represents a drawing.
  * 
- * A Drawing is represented by a set of lines
+ * A Drawing is represented by a set of lines.
  * 
  * @author rcacheira & nreis
  *
  */
 public class Drawing {
 	/**
-	 * The Drawing's set of lines
+	 * The Drawing's set of lines.
 	 */
 	private List<Line> lines;
 	
 	/**
-	 * Initiates an instance without lines
+	 * Initiates an instance without lines.
 	 */
 	public Drawing() {
 		lines = new LinkedList<Line>();
 	}
 	
 	/**
-	 * Adds a line to Drawing
+	 * Adds a line to Drawing.
 	 * 
 	 * @param l Line to add
 	 */
@@ -34,7 +34,7 @@ public class Drawing {
 	}
 	
 	/**
-	 * Get's the Drawing number of lines
+	 * Get's the Drawing number of lines.
 	 * 
 	 * @return the instance number of lines
 	 */
@@ -43,7 +43,7 @@ public class Drawing {
 	}
 
 	/**
-	 * Get's the Drawing set of lines
+	 * Get's the Drawing set of lines.
 	 * 
 	 * @return the instance iterable list of lines 
 	 */
@@ -52,7 +52,7 @@ public class Drawing {
 	}
 	
 	/**
-	 * Clears the Drawing Lines
+	 * Clears the Drawing Lines.
 	 */
 	public void clear(){
 		lines.clear();
@@ -70,7 +70,7 @@ public class Drawing {
 	}
 	
 	/**
-	 * Verifies if String represents a Drawing
+	 * Verifies if String represents a Drawing.
 	 * 
 	 * @param s String to verify
 	 * @return {@code true} in case of String represents a Drawing, {@code false} otherwise

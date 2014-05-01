@@ -12,6 +12,11 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.*;
 
+/**
+ * 
+ * @author rcacheira & nreis
+ *
+ */
 public class DrawView extends View {
 	
 	private Paint brush;

@@ -3,9 +3,9 @@ package isel.leic.poo.nrdraw.model;
 import java.util.LinkedList;
 
 /**
- * Class whose instance represents an Line
+ * Class whose instance represents a Line.
  * 
- * Line is composed by a set of points
+ * Line is composed by a set of points.
  * 
  * @author rcacheira & nreis
  *
@@ -24,16 +24,17 @@ public class Line {
 	}
 	
 	/**
-	 * Initiates an instance with the given first point
-	 * @param firsPoint
+	 * Initiates an instance with the given first point.
+	 * 
+	 * @param firstPoint
 	 */
-	public Line(Point firsPoint){
+	public Line(Point firstPoint){
 		points = new LinkedList<Point>();
-		points.add(firsPoint);
+		points.add(firstPoint);
 	}
 	
 	/**
-	 * Adds a point to Line
+	 * Adds a point to the Line.
 	 * 
 	 * @param p Point to add
 	 */
@@ -42,7 +43,7 @@ public class Line {
 	}
 	
 	/**
-	 * Gets the Line number of Points
+	 * Gets the number of points composed by the Line.
 	 * 
 	 * @return the instance number of Points
 	 */
@@ -51,9 +52,9 @@ public class Line {
 	}
 	
 	/**
-	 * Gets the Line first point
+	 * Gets the Line first point.
 	 * 
-	 * It's useful when line has only one point
+	 * It's useful when line has only one point.
 	 * 
 	 * @return the instance list first point
 	 */
@@ -62,7 +63,7 @@ public class Line {
 	}
 	
 	/**
-	 * Gets the Line set of points
+	 * Gets the Line set of points.
 	 * 
 	 * @return the instance iterable list of points
 	 */

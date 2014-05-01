@@ -10,7 +10,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:background="@color/Lgt_Gray"
         android:orientation="horizontal" >
 
         <Button
@@ -36,7 +38,9 @@
         android:id="@+id/drawView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/linearLayout1" />
 
 </RelativeLayout>

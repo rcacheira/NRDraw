@@ -16,8 +16,18 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 
+/**
+ * 
+ * @author rcacheira & nreis
+ *
+ */
 public class NRDrawActivity extends Activity {
 	
+	/**
+	 * 
+	 * @author rcacheira & nreis
+	 *
+	 */
 	private class ClickBehaviour implements OnClickListener{
 		@Override
 		public void onClick(View v) {
@@ -33,6 +43,11 @@ public class NRDrawActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * 
+	 * @author rcacheira & nreis
+	 *
+	 */
 	private class TouchBehaviour implements OnTouchListener{
 		private Line l;
 		
@@ -53,8 +68,9 @@ public class NRDrawActivity extends Activity {
 					break;
 				case MotionEvent.ACTION_MOVE:
 					/**
-					 * We choose to crate a new line when finger moves out of 
-					 * drawView, and continue draw lines when finger moves in
+					 * We chose to create a new line when the finger moves out of the
+					 * drawView, and continue to draw on a new line when the finger moves back
+					 * to the drawView
 					 */
 					if(event.getX(0) < 0 || event.getY(0) < 0){
 						clearLine();

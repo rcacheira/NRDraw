@@ -3,20 +3,20 @@ package isel.leic.poo.nrdraw.model;
 /**
  * Class whose instance represents a Point
  * 
- * Point have a position, that is represented as a rectangular 
- * coordinates that must be positive values
+ * A point has a position, that is represented as a rectangular 
+ * coordinates that must be positive values.
  * 
  * @author rcacheira & nreis
  *
  */
 public class Point{
 	/**
-	 * The Point's position
+	 * The Point's position.
 	 */
 	private float x, y;
 	
 	/**
-	 * Initiates an instance with the given coordinates
+	 * Initiates an instance with the given coordinates.
 	 * 
 	 * @param x The horizontal coordinate value
 	 * @param y The Vertical coordinate value
