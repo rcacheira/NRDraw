@@ -3,10 +3,9 @@ package isel.leic.poo.nrdraw.android;
 import isel.leic.poo.nrdraw.R;
 import isel.leic.poo.nrdraw.android.filesystem.AndroidLoader;
 import isel.leic.poo.nrdraw.android.filesystem.AndroidSaver;
-import isel.leic.poo.nrdraw.android.view.DrawView;
-import isel.leic.poo.nrdraw.model.Drawing;
-import isel.leic.poo.nrdraw.model.Line;
-import isel.leic.poo.nrdraw.model.Point;
+import isel.leic.poo.nrdraw.android.model.AndroidDrawing;
+import isel.leic.poo.nrdraw.android.model.AndroidLine;
+import isel.leic.poo.nrdraw.android.model.AndroidPoint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -34,10 +33,10 @@ public class NRDrawActivity extends Activity {
 	}
 	
 	private class TouchBehaviour implements OnTouchListener{
-		private Line l;
+		private AndroidLine l;
 		
-		private void createLine(Point p){
-			drawing.add(l = new Line(p));
+		private void createLine(AndroidPoint p){
+			drawing.add(l = new AndroidLine(p));
 		}
 		
 		private void clearLine(){
@@ -48,7 +47,7 @@ public class NRDrawActivity extends Activity {
 		public boolean onTouch(View v, MotionEvent event) {
 			switch(event.getAction()){
 				case MotionEvent.ACTION_DOWN:
-					createLine(new Point(event.getX(0), event.getY(0)));
+					createLine(new AndroidPoint(event.getX(0), event.getY(0)));
 					drawView.invalidate();
 					break;
 				case MotionEvent.ACTION_MOVE:
@@ -61,10 +60,10 @@ public class NRDrawActivity extends Activity {
 					}
 					else{
 						if(l == null){
-							createLine(new Point(event.getX(0), event.getY(0)));
+							createLine(new AndroidPoint(event.getX(0), event.getY(0)));
 						}
 						else{
-							l.add(new Point(event.getX(0), event.getY(0)));
+							l.add(new AndroidPoint(event.getX(0), event.getY(0)));
 						}
 						drawView.invalidate();
 					}
@@ -77,9 +76,9 @@ public class NRDrawActivity extends Activity {
 	}
 	
 	private Button btSave, btLoad, btClear;
-	private DrawView drawView;
+	private NRDrawView drawView;
 	private ClickBehaviour clickBehaviour;
-	private Drawing drawing;
+	private AndroidDrawing drawing;
 	private AlertDialog.Builder builder;
 	
 	private void save(){
@@ -102,13 +101,14 @@ public class NRDrawActivity extends Activity {
 		try{
 			loader.doOperation();
 			builder.setMessage(R.string.message_load_ok);
+			drawView.setDraw(drawing);
+			drawView.invalidate();
 		}
 		catch(Exception e){
 			e.printStackTrace();
 			builder.setMessage(R.string.message_load_n_ok);
 		}
 		builder.show();
-		drawView.invalidate();
 	}
 	
 	private void clear(){
@@ -123,7 +123,7 @@ public class NRDrawActivity extends Activity {
 		builder = new AlertDialog.Builder(this);
 		
 		clickBehaviour = new ClickBehaviour();
-		drawing = new Drawing();
+		drawing = new AndroidDrawing();
 		
 		btSave = (Button)findViewById(R.id.btSave);
 		btSave.setOnClickListener(clickBehaviour);
@@ -134,7 +134,7 @@ public class NRDrawActivity extends Activity {
 		btClear = (Button)findViewById(R.id.btClear);
 		btClear.setOnClickListener(clickBehaviour);
 		
-		drawView = (DrawView)findViewById(R.id.drawView);
+		drawView = (NRDrawView)findViewById(R.id.drawView);
 		drawView.setDraw(drawing);
 		drawView.setOnTouchListener(new TouchBehaviour());
 	}

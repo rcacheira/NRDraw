@@ -9,7 +9,7 @@ package isel.leic.poo.nrdraw.model;
  * @author rcacheira & nreis
  *
  */
-public class Point{
+public abstract class Point{
 	/**
 	 * The Point's position
 	 */
@@ -59,28 +59,6 @@ public class Point{
 	 */
 	public static boolean isObjectString(String s){
 		return s.startsWith("Point:");
-	}
-	
-	public static Point getFromString(String s){
-		if(!isObjectString(s)) 
-			throw new IllegalArgumentException();
-		return new Point(
-				getFloatValueFromString(s,"x"), getFloatValueFromString(s,"y"));
-	}
-	
-	public static float getFloatValueFromString(String s, String var){
-		int i0 = s.indexOf(var);
-		if(i0<0)
-			throw new IllegalArgumentException();
-		int i1 = s.indexOf(",", i0);
-		try{
-			if(i1==-1)
-				return Float.parseFloat(s.substring(i0+2));
-			return Float.parseFloat(s.substring(i0+2, i1));
-		}
-		catch(Exception ex){
-			throw new IllegalArgumentException();
-		}
 	}
 	
 }

@@ -12,7 +12,7 @@ import java.util.List;
  * @author rcacheira & nreis
  *
  */
-public class Drawing implements Serializable{
+public abstract class Drawing implements Serializable{
 	/**
 	 * 
 	 */

@@ -32,7 +32,7 @@
             android:text="@string/button_clear" />
     </LinearLayout>
 
-    <isel.leic.poo.nrdraw.android.view.DrawView
+    <isel.leic.poo.nrdraw.android.NRDrawView
         android:id="@+id/drawView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

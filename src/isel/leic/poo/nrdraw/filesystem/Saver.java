@@ -24,6 +24,6 @@ public abstract class Saver extends FileOperation{
 	}
 
 	@Override
-	public abstract void openFile() throws FileNotFoundException;
+	protected abstract void openFile() throws FileNotFoundException;
 	
 }

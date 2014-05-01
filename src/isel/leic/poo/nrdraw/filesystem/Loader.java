@@ -1,5 +1,6 @@
 package isel.leic.poo.nrdraw.filesystem;
 
+import isel.leic.poo.nrdraw.android.model.AndroidPoint;
 import isel.leic.poo.nrdraw.model.Drawing;
 import isel.leic.poo.nrdraw.model.Line;
 import isel.leic.poo.nrdraw.model.Point;
@@ -16,7 +17,6 @@ public abstract class Loader extends FileOperation{
 	public Loader(String fileName, Drawing drawing) {
 		super(fileName, drawing);
 		this.fileInputStream = null;
-		lineLoading = null;
 	}
 	
 	@Override
@@ -28,24 +28,29 @@ public abstract class Loader extends FileOperation{
 		}
 		s.close();
 	}
-	
-	private void treatLine(String line){
-		if(Drawing.isObjectString(line)){
+
+	protected void treatLine(String s){
+		if(Drawing.isObjectString(s)){
 			drawing.clear();
 		}
-		else if(Line.isObjectString(line)){
-			lineLoading = new Line();
+		else if(Line.isObjectString(s)){
+			lineLoading = createLine();
 			drawing.add(lineLoading);
 		}
-		else if(Point.isObjectString(line)){
-			lineLoading.add(Point.getFromString(line));
+		else if(AndroidPoint.isObjectString(s)){
+			lineLoading.add(createPoint(getFloatValueFromString(s, "x"),
+					getFloatValueFromString(s, "y")));
 		}
 		else{
-			System.out.println("Unrecognized Line[" + line + "]");
+			System.out.println("Unrecognized Line[" + s + "]");
 		}
 	}
-
+	
+	protected abstract Line createLine();
+	
+	protected abstract Point createPoint(float x, float y);
+	
 	@Override
-	public abstract void openFile() throws FileNotFoundException;
+	protected abstract void openFile() throws FileNotFoundException;
 	
 }

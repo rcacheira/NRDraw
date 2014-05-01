@@ -14,7 +14,22 @@ public abstract class FileOperation {
 		this.drawing = drawing;
 	}
 	
-	public abstract void openFile() throws FileNotFoundException;
+	protected abstract void openFile() throws FileNotFoundException;
 	
 	public abstract void doOperation() throws IOException;
+	
+	protected static final float getFloatValueFromString(String s, String var){
+		int i0 = s.indexOf(var);
+		if(i0<0)
+			throw new IllegalArgumentException();
+		int i1 = s.indexOf(",", i0);
+		try{
+			if(i1==-1)
+				return Float.parseFloat(s.substring(i0+2));
+			return Float.parseFloat(s.substring(i0+2, i1));
+		}
+		catch(Exception ex){
+			throw new IllegalArgumentException();
+		}
+	}
 }

@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * @author rcacheira & nreis
  *
  */
-public class Line {
+public abstract class Line {
 	/**
 	 * The Line's set of points
 	 */
