@@ -1,5 +1,6 @@
 package isel.leic.poo.nrdraw.android.filesystem;
 
+import isel.leic.poo.nrdraw.R;
 import isel.leic.poo.nrdraw.android.model.AndroidDrawing;
 import isel.leic.poo.nrdraw.android.model.AndroidLine;
 import isel.leic.poo.nrdraw.android.model.AndroidPoint;
@@ -9,17 +10,31 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.view.View;
 
 public class AndroidLoader extends Loader{
 	private Activity activity;
-	public AndroidLoader(Activity activity, String fileName, AndroidDrawing drawing) {
+	private View view;
+	
+	public AndroidLoader(Activity activity, View view, String fileName, AndroidDrawing drawing) {
 		super(fileName, drawing);
 		this.activity = activity;
+		this.view = view;
 	}
 
-	@Override
-	public void doOperation() throws IOException {
-		super.doOperation();
+	public void load(){
+		try{
+			super.doOperation();
+			view.invalidate();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+			AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+			builder.setTitle(R.string.dialog_title_load);
+			builder.setMessage(R.string.message_load_n_ok);
+			builder.show();
+		}
 	}
 	
 	@Override

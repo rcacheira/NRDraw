@@ -7,7 +7,6 @@ import isel.leic.poo.nrdraw.android.model.AndroidDrawing;
 import isel.leic.poo.nrdraw.android.model.AndroidLine;
 import isel.leic.poo.nrdraw.android.model.AndroidPoint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -21,55 +20,29 @@ public class NRDrawActivity extends Activity {
 		@Override
 		public void onClick(View v) {
 			if(v == btSave){
-				save();
+				actionSave();
 			}
 			else if(v == btLoad){
-				load();
+				actionLoad();
 			}
 			else if(v == btClear){
-				clear();
+				actionClear();
 			}
 		}
 	}
 	
 	private class TouchBehaviour implements OnTouchListener{
-		private AndroidLine l;
-		
-		private void createLine(AndroidPoint p){
-			drawing.add(l = new AndroidLine(p));
-		}
-		
-		private void clearLine(){
-			l = null;
-		}
-		
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
 			switch(event.getAction()){
 				case MotionEvent.ACTION_DOWN:
-					createLine(new AndroidPoint(event.getX(0), event.getY(0)));
-					drawView.invalidate();
+					actionDown(event);
 					break;
 				case MotionEvent.ACTION_MOVE:
-					/**
-					 * We choose to crate a new line when finger moves out of 
-					 * drawView, and continue draw lines when finger moves in
-					 */
-					if(event.getX(0) < 0 || event.getY(0) < 0){
-						clearLine();
-					}
-					else{
-						if(l == null){
-							createLine(new AndroidPoint(event.getX(0), event.getY(0)));
-						}
-						else{
-							l.add(new AndroidPoint(event.getX(0), event.getY(0)));
-						}
-						drawView.invalidate();
-					}
+					actionUp(event);
 					break;
 				default:
-					break;
+					return false;
 			}
 			return true;
 		}
@@ -79,48 +52,49 @@ public class NRDrawActivity extends Activity {
 	private NRDrawView drawView;
 	private ClickBehaviour clickBehaviour;
 	private AndroidDrawing drawing;
-	private AlertDialog.Builder builder;
+	private AndroidLine workingLine;
 	
-	private void save(){
-		builder.setTitle(R.string.dialog_title_save);
-		AndroidSaver saver = new AndroidSaver(this, "drawing", drawing);
-		try{
-			saver.doOperation();
-			builder.setMessage(R.string.message_save_ok);
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			builder.setMessage(R.string.message_save_n_ok);
-		}
-		builder.show();
+	private void actionSave(){
+		new AndroidSaver(this, "drawing", drawing).save();
 	}
 	
-	private void load(){
-		builder.setTitle(R.string.dialog_title_load);
-		AndroidLoader loader = new AndroidLoader(this, "drawing", drawing);
-		try{
-			loader.doOperation();
-			builder.setMessage(R.string.message_load_ok);
-			drawView.setDraw(drawing);
-			drawView.invalidate();
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			builder.setMessage(R.string.message_load_n_ok);
-		}
-		builder.show();
+	private void actionLoad(){
+		new AndroidLoader(this, drawView, "drawing", drawing).load();
 	}
 	
-	private void clear(){
+	private void actionClear(){
 		drawing.clear();
 		drawView.invalidate();
+	}
+	
+	private void actionDown(MotionEvent event){
+		createLine(new AndroidPoint(event.getX(0), event.getY(0)));
+		drawView.invalidate();
+	}
+	
+	private void actionUp(MotionEvent event){
+		if(workingLine != null && (event.getX(0) < 0 || event.getY(0) < 0)){
+			workingLine = null;
+		}
+		else{
+			if(workingLine == null){
+				createLine(new AndroidPoint(event.getX(0), event.getY(0)));
+			}
+			else{
+				workingLine.add(new AndroidPoint(event.getX(0), event.getY(0)));
+			}
+			drawView.invalidate();
+		}
+	}
+	
+	private void createLine(AndroidPoint p){
+		drawing.add(workingLine = new AndroidLine(p));
 	}
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nrdraw);
-		builder = new AlertDialog.Builder(this);
 		
 		clickBehaviour = new ClickBehaviour();
 		drawing = new AndroidDrawing();
@@ -135,7 +109,7 @@ public class NRDrawActivity extends Activity {
 		btClear.setOnClickListener(clickBehaviour);
 		
 		drawView = (NRDrawView)findViewById(R.id.drawView);
-		drawView.setDraw(drawing);
+		drawView.setDrawing(drawing);
 		drawView.setOnTouchListener(new TouchBehaviour());
 	}
 	

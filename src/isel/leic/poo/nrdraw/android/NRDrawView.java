@@ -20,7 +20,7 @@ public class NRDrawView extends View {
 		drawing = null;
 	}
 	
-	public void setDraw(AndroidDrawing d){
+	public void setDrawing(AndroidDrawing d){
 		drawing = d;
 	}
 	

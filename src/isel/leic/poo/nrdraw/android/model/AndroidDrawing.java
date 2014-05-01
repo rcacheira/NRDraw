@@ -5,7 +5,7 @@ import isel.leic.poo.nrdraw.model.Line;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public class AndroidDrawing extends Drawing implements AndroidDrawable{
+public class AndroidDrawing extends Drawing implements Drawable{
 
 	/**
 	 * Class serial version
