@@ -1,5 +1,6 @@
 package isel.leic.poo.nrdraw.model;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +12,11 @@ import java.util.List;
  * @author rcacheira & nreis
  *
  */
-public class Drawing {
+public class Drawing implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * The Drawing's set of lines
 	 */

@@ -1,29 +1,28 @@
-package isel.leic.poo.nrdraw.android.filesystem;
+package isel.leic.poo.nrdraw.filesystem;
 
 import isel.leic.poo.nrdraw.model.Drawing;
 import isel.leic.poo.nrdraw.model.Line;
 import isel.leic.poo.nrdraw.model.Point;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
-import android.app.Activity;
-
-public class Loader extends FileOperation{
-
+public abstract class Loader extends FileOperation{
+	protected FileInputStream fileInputStream;
 	private Line lineLoading;
 	
-	public Loader(Activity activity, String fileName, Drawing drawing) {
-		super(activity, fileName, drawing);
+	public Loader(String fileName, Drawing drawing) {
+		super(fileName, drawing);
+		this.fileInputStream = null;
+		lineLoading = null;
 	}
 	
 	@Override
 	public void doOperation() throws IOException {
-		load();
-	}
-
-	private void load() throws IOException {
-		Scanner s = new Scanner(activity.openFileInput(fileName));
+		openFile();
+		Scanner s = new Scanner(fileInputStream);
 		while(s.hasNext()){
 			treatLine(s.next());
 		}
@@ -45,5 +44,8 @@ public class Loader extends FileOperation{
 			System.out.println("Unrecognized Line[" + line + "]");
 		}
 	}
+
+	@Override
+	public abstract void openFile() throws FileNotFoundException;
 	
 }

@@ -1,8 +1,8 @@
 package isel.leic.poo.nrdraw.android;
 
 import isel.leic.poo.nrdraw.R;
-import isel.leic.poo.nrdraw.android.filesystem.Loader;
-import isel.leic.poo.nrdraw.android.filesystem.Saver;
+import isel.leic.poo.nrdraw.android.filesystem.AndroidLoader;
+import isel.leic.poo.nrdraw.android.filesystem.AndroidSaver;
 import isel.leic.poo.nrdraw.android.view.DrawView;
 import isel.leic.poo.nrdraw.model.Drawing;
 import isel.leic.poo.nrdraw.model.Line;
@@ -84,12 +84,13 @@ public class NRDrawActivity extends Activity {
 	
 	private void save(){
 		builder.setTitle(R.string.dialog_title_save);
-		Saver saver = new Saver(this, "drawing", drawing);
+		AndroidSaver saver = new AndroidSaver(this, "drawing", drawing);
 		try{
 			saver.doOperation();
 			builder.setMessage(R.string.message_save_ok);
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			builder.setMessage(R.string.message_save_n_ok);
 		}
 		builder.show();
@@ -97,7 +98,7 @@ public class NRDrawActivity extends Activity {
 	
 	private void load(){
 		builder.setTitle(R.string.dialog_title_load);
-		Loader loader = new Loader(this, "drawing", drawing);
+		AndroidLoader loader = new AndroidLoader(this, "drawing", drawing);
 		try{
 			loader.doOperation();
 			builder.setMessage(R.string.message_load_ok);

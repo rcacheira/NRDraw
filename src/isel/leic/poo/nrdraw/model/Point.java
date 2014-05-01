@@ -73,9 +73,6 @@ public class Point{
 		if(i0<0)
 			throw new IllegalArgumentException();
 		int i1 = s.indexOf(",", i0);
-//		if(i1 == -1){
-//			i1 = s.indexOf("\n", i0);
-//		}
 		try{
 			if(i1==-1)
 				return Float.parseFloat(s.substring(i0+2));
