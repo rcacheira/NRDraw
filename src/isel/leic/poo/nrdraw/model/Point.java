@@ -58,7 +58,7 @@ public abstract class Point{
 	 * @param s String to verify
 	 * @return {@code true} in case of String represents a Point, {@code false} otherwise
 	 */
-	public static boolean isObjectString(String s){
+	public static boolean isAPointString(String s){
 		return s.startsWith("Point:");
 	}
 	

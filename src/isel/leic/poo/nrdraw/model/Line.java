@@ -29,7 +29,7 @@ public abstract class Line {
 	 * @param firstPoint
 	 */
 	public Line(Point firstPoint){
-		points = new LinkedList<Point>();
+		this();
 		points.add(firstPoint);
 	}
 	
@@ -87,7 +87,7 @@ public abstract class Line {
 	 * @param s String to verify
 	 * @return {@code true} in case of String represents a Line, {@code false} otherwise
 	 */
-	public static boolean isObjectString(String s){
+	public static boolean isALineString(String s){
 		return s.startsWith("Line:");
 	}
 }

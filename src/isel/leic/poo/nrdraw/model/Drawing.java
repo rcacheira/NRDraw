@@ -75,7 +75,7 @@ public abstract class Drawing{
 	 * @param s String to verify
 	 * @return {@code true} in case of String represents a Drawing, {@code false} otherwise
 	 */
-	public static boolean isObjectString(String s){
+	public static boolean isADrawingString(String s){
 		return s.startsWith("Drawing:");
 	}
 }

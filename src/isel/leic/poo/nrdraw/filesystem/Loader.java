@@ -48,7 +48,7 @@ public abstract class Loader extends FileOperation{
 		openFile();
 		Scanner s = new Scanner(fileInputStream);
 		while(s.hasNext()){
-			parseLine(s.next());
+			parseFileLine(s.next());
 		}
 		s.close();
 	}
@@ -58,17 +58,17 @@ public abstract class Loader extends FileOperation{
 	 * 
 	 * @param line Line to be parsed
 	 */
-	protected void parseLine(String line){
-		if(Drawing.isObjectString(line)){
+	protected void parseFileLine(String line){
+		if(Drawing.isADrawingString(line)){
 			drawing.clear();
 		}
-		else if(Line.isObjectString(line)){
+		else if(Line.isALineString(line)){
 			lineLoading = createLine();
 			drawing.add(lineLoading);
 		}
-		else if(AndroidPoint.isObjectString(line)){
-			lineLoading.add(createPoint(parseFloatValue(line, "x"),
-					parseFloatValue(line, "y")));
+		else if(AndroidPoint.isAPointString(line)){
+			lineLoading.add(createPoint(parseFloatVarFromString(line, "x"),
+					parseFloatVarFromString(line, "y")));
 		}
 		else{
 			System.out.println("Unrecognized Line[" + line + "]");
