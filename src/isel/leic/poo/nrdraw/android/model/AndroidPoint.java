@@ -9,19 +9,19 @@ import isel.leic.poo.nrdraw.model.Point;
 /**
  * Implementation of Drawing in Android implement {@code Serializable} 
  * to be saved on AndroidDrawing/AndroidLine save by Activity method 
- * "onSaveInstanceState" 
+ * {@code onSaveInstanceState}
  * 
  * @author rcacheira & nreis
  *
  */
 public class AndroidPoint extends Point implements AndroidDrawable, Serializable{
 	/**
-	 * Class Serial Version
+	 * Class Serial Version.
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Initiates an instance with the given coordinates
+	 * Initiates an instance with the given coordinates.
 	 * 
 	 * @param x The horizontal coordinate value
 	 * @param y The vertical coordinate value
@@ -31,9 +31,9 @@ public class AndroidPoint extends Point implements AndroidDrawable, Serializable
 	}
 
 	/**
-	 * Draws point on given canvas using given brush
+	 * Draws point on the given canvas using the given brush.
 	 * 
-	 * @throws IllegalArgumentException if null canvas or null brush
+	 * @throws IllegalArgumentException if there is no canvas or brush
 	 */
 	public void draw(Canvas canvas, Paint brush){
 		if(canvas == null || brush == null) throw new IllegalArgumentException();

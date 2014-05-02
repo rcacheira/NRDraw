@@ -4,23 +4,23 @@ import isel.leic.poo.nrdraw.model.Drawing;
 import java.io.IOException;
 
 /**
- * Abstract class whose instance represents a FileOperation
+ * Abstract class whose instance represents a FileOperation.
  * 
  * @author rcacheira & nreis
  *
  */
 public abstract class FileOperation {
 	/**
-	 * File on which the action is taken
+	 * File on which the action is taken.
 	 */
 	protected String fileName;
 	/**
-	 * Drawing on which the action is taken
+	 * Drawing on which the action is taken.
 	 */
 	protected Drawing drawing;
 	
 	/**
-	 * Initiates an instance of File Operation with the given fileName and Drawing
+	 * Initiates an instance of File Operation with the given fileName and Drawing.
 	 * 
 	 * @param fileName File on which the action is taken
 	 * @param drawing Drawing on which the action is taken
@@ -31,7 +31,7 @@ public abstract class FileOperation {
 	}
 	
 	/**
-	 * Do the file operation
+	 * Does the file operation.
 	 * 
 	 * @throws IOException
 	 */

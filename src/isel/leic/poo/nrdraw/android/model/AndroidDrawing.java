@@ -10,22 +10,21 @@ import android.graphics.Paint;
 
 /**
  * Implementation of Drawing in Android implements {@code Serializable} 
- * to be saved on Activity method "onSaveInstanceState"
+ * to be saved on Activity method {@code onSaveInstanceState}.
  * 
  * @author rcacheira & nreis
  *
  */
 public class AndroidDrawing extends Drawing implements AndroidDrawable, Serializable{
 	/**
-	 * Class serial version
+	 * Class serial version.
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	/**
-	 * Draws Drawing on given canvas using given brush
-	 * @throws InvalidClassException 
+	 * Draws Drawing on given canvas using given brush.
 	 * 
-	 * @throws IllegalArgumentException if null canvas or null brush
+	 * @throws IllegalArgumentException if there is no canvas or brush
 	 * @throws InvalidClassException if any line existent on list isn't an 
 	 * instance of AndroidLine
 	 */

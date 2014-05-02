@@ -1,26 +1,26 @@
 package isel.leic.poo.nrdraw.model;
 
 /**
- * Class whose instance represents a Point
+ * Class whose instance represents a Point.
  * 
- * Point have a position, that is represented as a rectangular 
- * coordinates that must be positive values
+ * Point has a position, that is represented as an x and y 
+ * coordinates that must be positive values.
  * 
  * @author rcacheira & nreis
  *
  */
 public abstract class Point{
 	/**
-	 * The Point's position
+	 * The Point's position.
 	 */
 	private float x, y;
 	
 	/**
-	 * Initiates an instance with the given coordinates
+	 * Initiates an instance with the given coordinates.
 	 * 
 	 * @param x The horizontal coordinate value
 	 * @param y The Vertical coordinate value
-	 * @throws IllegalArgumentException when any of coordinates are negative
+	 * @throws IllegalArgumentException when any of the coordinates are negative
 	 */
 	public Point(float x, float y) {
 		if(x<0 || y<0) 
@@ -30,7 +30,7 @@ public abstract class Point{
 	}
 	
 	/**
-	 * Gets the Point's horizontal coordinate value
+	 * Gets the Point's horizontal coordinate value.
 	 * 
 	 * @return The instance horizontal value
 	 */

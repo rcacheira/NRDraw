@@ -14,39 +14,35 @@ import android.app.AlertDialog;
 import android.view.View;
 
 /**
- * Class whose instance represents a an Adroid implmentation of Loader
+ * Class whose instance represents an Android implementation of {@code Loader}.
  * 
  * @author rcacheira & nreis
  *
  */
 public class AndroidLoader extends Loader{
 	/**
-	 * Activity used to open file
+	 * Activity used to open file.
 	 */
 	private Activity activity;
-	/**
-	 * View needs be updated after a good load operation 
-	 */
-	private View view;
 	
 	/**
-	 * Initiates an instance with the given Activity, View, fileName and Drawing
+	 * Initiates an instance with the given Activity, View, fileName and Drawing.
 	 * 
 	 * @param activity Used to open file
-	 * @param view That needs to be updated
 	 * @param fileName File to load drawing
 	 * @param drawing Drawing to load information saved on file
 	 */
-	public AndroidLoader(Activity activity, View view, String fileName, AndroidDrawing drawing) {
+	public AndroidLoader(Activity activity, String fileName, AndroidDrawing drawing) {
 		super(fileName, drawing);
 		this.activity = activity;
-		this.view = view;
 	}
 
 	/**
-	 * Loads a drawing and show an AlertDialog if some error occurs
+	 * Loads a drawing and shows an AlertDialog if some error occurs.
+	 * 
+	 * @param view That needs to be updated
 	 */
-	public void load(){
+	public void load(View view){
 		try{
 			doOperation();
 			view.invalidate();
@@ -62,7 +58,7 @@ public class AndroidLoader extends Loader{
 	}
 	
 	/**
-	 * Opens the file to be loaded
+	 * Opens the file to be loaded.
 	 * 
 	 * @throws FileNotFoundException when file does not exists on fileSystem
 	 */
@@ -72,7 +68,7 @@ public class AndroidLoader extends Loader{
 	}
 
 	/**
-	 * Creates a new AndroidLine
+	 * Creates a new AndroidLine.
 	 * 
 	 * @return the new AndroidLine
 	 */
@@ -82,7 +78,7 @@ public class AndroidLoader extends Loader{
 	}
 
 	/**
-	 * Creates a new AndroidPoint with the given coordinates
+	 * Creates a new AndroidPoint with the given coordinates.
 	 * 
 	 * @param x The horizontal coordinate value
 	 * @param y The vertical coordinate value

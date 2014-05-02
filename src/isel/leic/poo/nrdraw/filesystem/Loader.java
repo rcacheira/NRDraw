@@ -11,23 +11,23 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * Class whose instance represents a Drawing Loader
+ * Class whose instance represents a Drawing Loader.
  * 
  * @author rcacheira & nreis
  *
  */
 public abstract class Loader extends FileOperation{
 	/**
-	 * InputStream used to manipulate the file
+	 * InputStream used to manipulate the file.
 	 */
 	protected FileInputStream fileInputStream;
 	/**
-	 * Instance of line that represent the line being loaded
+	 * Instance of line that represents the line being loaded.
 	 */
 	private Line lineLoading;
 	
 	/**
-	 * Initiates an instance of Loader with the given fileName and Drawing
+	 * Initiates an instance of Loader with the given fileName and Drawing.
 	 * 
 	 * @param fileName File on which the action is taken
 	 * @param drawing Drawing on which the action is taken
@@ -38,10 +38,10 @@ public abstract class Loader extends FileOperation{
 	}
 	
 	/**
-	 * Load Drawing on file with name given on constructor, to drawing given on 
-	 * constructor
+	 * Load Drawing on file with name given on constructor,
+	 * to drawing given on constructor.
 	 * 
-	 * @throws IOException
+	 * @throws IOException if no such file exists.
 	 */
 	@Override
 	public void doOperation() throws IOException {
@@ -54,7 +54,7 @@ public abstract class Loader extends FileOperation{
 	}
 
 	/**
-	 * Parses a line and do the work necessary for process line
+	 * Parses a line and does the work necessary to process the line.
 	 * 
 	 * @param line Line to be parsed
 	 */
@@ -76,14 +76,14 @@ public abstract class Loader extends FileOperation{
 	}
 	
 	/**
-	 * Creates a new line
+	 * Creates a new line.
 	 * 
 	 * @return New Line
 	 */
 	protected abstract Line createLine();
 	
 	/**
-	 * Creates a Point
+	 * Creates a Point.
 	 * 
 	 * @param x Horizontal coordinate value
 	 * @param y Vertical coordinate value
@@ -92,7 +92,7 @@ public abstract class Loader extends FileOperation{
 	protected abstract Point createPoint(float x, float y);
 	
 	/**
-	 * Opens the {@code FileInputStream} present in this class
+	 * Opens the {@code FileInputStream} present in this class.
 	 * 
 	 * @throws FileNotFoundException when file does not exists on fileSystem
 	 */
