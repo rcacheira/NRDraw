@@ -1,5 +1,6 @@
 package isel.leic.poo.nrdraw.android.model;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 import android.graphics.Canvas;
@@ -7,8 +8,18 @@ import android.graphics.Paint;
 import isel.leic.poo.nrdraw.model.Line;
 import isel.leic.poo.nrdraw.model.Point;
 
-public class AndroidLine extends Line implements AndroidDrawable{
-	
+/**
+ * Implementation of Drawing in Android needs to implement {@code Serializable} to be saved on AndroidDrawing save by Activity method "onSaveInstanceState" 
+ * 
+ * @author Nuno
+ *
+ */
+public class AndroidLine extends Line implements AndroidDrawable, Serializable{
+	/**
+	 * Class Serial Version
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public AndroidLine(){
 		super();
 	}

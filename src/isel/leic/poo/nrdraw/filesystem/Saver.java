@@ -19,7 +19,6 @@ public abstract class Saver extends FileOperation{
 		openFile();
 		PrintWriter p = new PrintWriter(fileOutputStream);
 		p.print(drawing);
-		p.flush();
 		p.close();
 	}
 

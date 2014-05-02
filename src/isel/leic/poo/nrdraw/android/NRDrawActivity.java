@@ -1,5 +1,7 @@
 package isel.leic.poo.nrdraw.android;
 
+import java.io.InvalidClassException;
+
 import isel.leic.poo.nrdraw.R;
 import isel.leic.poo.nrdraw.android.filesystem.AndroidLoader;
 import isel.leic.poo.nrdraw.android.filesystem.AndroidSaver;
@@ -48,6 +50,7 @@ public class NRDrawActivity extends Activity {
 		}
 	}
 	
+	private static final String DRAWING_KEY = "NRDraw.Drawing";
 	private Button btSave, btLoad, btClear;
 	private NRDrawView drawView;
 	private ClickBehaviour clickBehaviour;
@@ -91,13 +94,36 @@ public class NRDrawActivity extends Activity {
 		drawing.add(workingLine = new AndroidLine(p));
 	}
 	
+	private void save(Bundle outState){
+		outState.putSerializable(DRAWING_KEY, drawing);
+	}
+	
+	private void load(Bundle savedInstanceState) throws InvalidClassException{
+		Object obj = savedInstanceState.get(DRAWING_KEY);
+		if(!(obj instanceof AndroidDrawing)){
+			throw new InvalidClassException("Class loaded isn't an instance of AndroidDrawing");
+		}
+		drawing = (AndroidDrawing)obj;
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_nrdraw);
 		
 		clickBehaviour = new ClickBehaviour();
-		drawing = new AndroidDrawing();
+		
+		try{
+			if(savedInstanceState != null){
+				load(savedInstanceState);
+			} else {
+				drawing = new AndroidDrawing();
+			}
+		}
+		catch(InvalidClassException e){
+			e.printStackTrace();
+			drawing = new AndroidDrawing();
+		}
 		
 		btSave = (Button)findViewById(R.id.btSave);
 		btSave.setOnClickListener(clickBehaviour);
@@ -111,6 +137,24 @@ public class NRDrawActivity extends Activity {
 		drawView = (NRDrawView)findViewById(R.id.drawView);
 		drawView.setDrawing(drawing);
 		drawView.setOnTouchListener(new TouchBehaviour());
+	}
+	
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		try{
+			load(savedInstanceState);
+		}
+		catch(InvalidClassException e){
+			e.printStackTrace();
+			drawing = new AndroidDrawing();
+		}
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		save(outState);
 	}
 	
 }

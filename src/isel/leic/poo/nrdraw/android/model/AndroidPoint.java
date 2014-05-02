@@ -1,10 +1,22 @@
 package isel.leic.poo.nrdraw.android.model;
 
+import java.io.Serializable;
+
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import isel.leic.poo.nrdraw.model.Point;
 
-public class AndroidPoint extends Point implements AndroidDrawable{
+/**
+ * Implementation of Drawing in Android needs to implement {@code Serializable} to be saved on AndroidDrawing/AndroidLine save by Activity method "onSaveInstanceState" 
+ * 
+ * @author Nuno
+ *
+ */
+public class AndroidPoint extends Point implements AndroidDrawable, Serializable{
+	/**
+	 * Class Serial Version
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public AndroidPoint(float x, float y) {
 		super(x, y);
