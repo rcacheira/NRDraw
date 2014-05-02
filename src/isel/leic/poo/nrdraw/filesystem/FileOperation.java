@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * Abstract class whose instance represents a FileOperation
  * 
- * @author rcacheira
+ * @author rcacheira & nreis
  *
  */
 public abstract class FileOperation {

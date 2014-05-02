@@ -1,5 +1,6 @@
 package isel.leic.poo.nrdraw.android.model;
 
+import java.io.InvalidClassException;
 import java.io.Serializable;
 import java.util.Iterator;
 
@@ -9,9 +10,10 @@ import isel.leic.poo.nrdraw.model.Line;
 import isel.leic.poo.nrdraw.model.Point;
 
 /**
- * Implementation of Drawing in Android needs to implement {@code Serializable} to be saved on AndroidDrawing save by Activity method "onSaveInstanceState" 
+ * Implementation of Drawing in Android implements {@code Serializable}
+ * to be saved on AndroidDrawing save by Activity method "onSaveInstanceState" 
  * 
- * @author Nuno
+ * @author rcacheira & nreis
  *
  */
 public class AndroidLine extends Line implements AndroidDrawable, Serializable{
@@ -20,18 +22,33 @@ public class AndroidLine extends Line implements AndroidDrawable, Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Initiates an instance
+	 */
 	public AndroidLine(){
 		super();
 	}
 	
-	public AndroidLine(AndroidPoint firsPoint){
-		super(firsPoint);
+	/**
+	 * Initiates an instance with the given firstPoint
+	 * @param firsPoint
+	 */
+	public AndroidLine(AndroidPoint firstPoint){
+		super(firstPoint);
 	}
 	
-	public void draw(Canvas canvas, Paint brush){
+	/**
+	 * Draws Line on given canvas using given brush
+	 * 
+	 * @throws IllegalArgumentException if null canvas or null brush
+	 */
+	public void draw(Canvas canvas, Paint brush) throws InvalidClassException{
 		if(canvas == null || brush == null) throw new IllegalArgumentException();
 		int nrOfPoints = getNrOfPoints();
 		if(nrOfPoints == 1){
+			if(!(getFirstPoint() instanceof AndroidPoint)){
+				throw new InvalidClassException("Point isn't an instance of Android Point");
+			}
 			((AndroidPoint)getFirstPoint()).draw(canvas, brush);
 		} else if(nrOfPoints > 1){
 			Iterator<Point> it = getPoints().iterator();

@@ -16,8 +16,18 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 
+/**
+ * 
+ * @author rcacheira & nreis
+ *
+ */
 public class NRDrawActivity extends Activity {
 	
+	/**
+	 * 
+	 * @author rcacheira & nreis
+	 *
+	 */
 	private class ClickBehaviour implements OnClickListener{
 		@Override
 		public void onClick(View v) {
@@ -33,6 +43,11 @@ public class NRDrawActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * 
+	 * @author rcacheira & nreis
+	 *
+	 */
 	private class TouchBehaviour implements OnTouchListener{
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {

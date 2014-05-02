@@ -13,7 +13,7 @@ import java.util.Scanner;
 /**
  * Class whose instance represents a Drawing Loader
  * 
- * @author rcacheira
+ * @author rcacheira & nreis
  *
  */
 public abstract class Loader extends FileOperation{
@@ -37,37 +37,65 @@ public abstract class Loader extends FileOperation{
 		this.fileInputStream = null;
 	}
 	
+	/**
+	 * Load Drawing on file with name given on constructor, to drawing given on 
+	 * constructor
+	 * 
+	 * @throws IOException
+	 */
 	@Override
 	public void doOperation() throws IOException {
 		openFile();
 		Scanner s = new Scanner(fileInputStream);
 		while(s.hasNext()){
-			treatLine(s.next());
+			parseLine(s.next());
 		}
 		s.close();
 	}
 
-	protected void treatLine(String s){
-		if(Drawing.isObjectString(s)){
+	/**
+	 * Parses a line and do the work necessary for process line
+	 * 
+	 * @param line Line to be parsed
+	 */
+	protected void parseLine(String line){
+		if(Drawing.isObjectString(line)){
 			drawing.clear();
 		}
-		else if(Line.isObjectString(s)){
+		else if(Line.isObjectString(line)){
 			lineLoading = createLine();
 			drawing.add(lineLoading);
 		}
-		else if(AndroidPoint.isObjectString(s)){
-			lineLoading.add(createPoint(parseFloatValue(s, "x"),
-					parseFloatValue(s, "y")));
+		else if(AndroidPoint.isObjectString(line)){
+			lineLoading.add(createPoint(parseFloatValue(line, "x"),
+					parseFloatValue(line, "y")));
 		}
 		else{
-			System.out.println("Unrecognized Line[" + s + "]");
+			System.out.println("Unrecognized Line[" + line + "]");
 		}
 	}
 	
+	/**
+	 * Creates a new line
+	 * 
+	 * @return New Line
+	 */
 	protected abstract Line createLine();
 	
+	/**
+	 * Creates a Point
+	 * 
+	 * @param x Horizontal coordinate value
+	 * @param y Vertical coordinate value
+	 * @return New Point with the given coordinates
+	 */
 	protected abstract Point createPoint(float x, float y);
 	
+	/**
+	 * Opens the {@code FileInputStream} present in this class
+	 * 
+	 * @throws FileNotFoundException when file does not exists on fileSystem
+	 */
 	protected void openFile() throws FileNotFoundException{
 		fileInputStream = new FileInputStream(fileName);
 	}

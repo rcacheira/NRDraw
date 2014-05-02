@@ -20,6 +20,7 @@ public abstract class Point{
 	 * 
 	 * @param x The horizontal coordinate value
 	 * @param y The Vertical coordinate value
+	 * @throws IllegalArgumentException when any of coordinates are negative
 	 */
 	public Point(float x, float y) {
 		if(x<0 || y<0) 

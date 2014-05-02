@@ -7,13 +7,31 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Class whose instance represent a Drawing Saver
+ * 
+ * @author rcacheira & nreis
+ *
+ */
 public abstract class Saver extends FileOperation{
+	/**
+	 * OutputStream to manipulate the Drawing
+	 */
 	protected FileOutputStream fileOutputStream;
 	
+	/**
+	 * Initiates an instance of Saver with the given fileName and Drawing
+	 * @param fileName
+	 * @param drawing
+	 */
 	public Saver(String fileName, Drawing drawing) {
 		super(fileName, drawing);
 	}
 	
+	/**
+	 * Saves Drawing given on constructor, to file with the name passed on 
+	 * constructor
+	 */
 	@Override
 	public void doOperation() throws IOException {
 		openFile();
@@ -22,6 +40,11 @@ public abstract class Saver extends FileOperation{
 		p.close();
 	}
 
+	/**
+	 * Opens the {@code FileOutputStream} present in this class
+	 * 
+	 * @throws FileNotFoundException if file cannot be opened for writing
+	 */
 	protected void openFile() throws FileNotFoundException{
 		fileOutputStream = new FileOutputStream(fileName, false);
 	}

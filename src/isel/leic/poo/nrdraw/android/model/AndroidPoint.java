@@ -7,9 +7,11 @@ import android.graphics.Paint;
 import isel.leic.poo.nrdraw.model.Point;
 
 /**
- * Implementation of Drawing in Android needs to implement {@code Serializable} to be saved on AndroidDrawing/AndroidLine save by Activity method "onSaveInstanceState" 
+ * Implementation of Drawing in Android implement {@code Serializable} 
+ * to be saved on AndroidDrawing/AndroidLine save by Activity method 
+ * "onSaveInstanceState" 
  * 
- * @author Nuno
+ * @author rcacheira & nreis
  *
  */
 public class AndroidPoint extends Point implements AndroidDrawable, Serializable{
@@ -18,10 +20,21 @@ public class AndroidPoint extends Point implements AndroidDrawable, Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Initiates an instance with the given coordinates
+	 * 
+	 * @param x The horizontal coordinate value
+	 * @param y The vertical coordinate value
+	 */
 	public AndroidPoint(float x, float y) {
 		super(x, y);
 	}
 
+	/**
+	 * Draws point on given canvas using given brush
+	 * 
+	 * @throws IllegalArgumentException if null canvas or null brush
+	 */
 	public void draw(Canvas canvas, Paint brush){
 		if(canvas == null || brush == null) throw new IllegalArgumentException();
 		canvas.drawPoint(getX(), getY(), brush);

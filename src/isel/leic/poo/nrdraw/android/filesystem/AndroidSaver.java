@@ -10,6 +10,11 @@ import java.io.IOException;
 import android.app.Activity;
 import android.app.AlertDialog;
 
+/**
+ * 
+ * @author rcacheira & nreis
+ *
+ */
 public class AndroidSaver extends Saver{
 	private Activity activity;
 	

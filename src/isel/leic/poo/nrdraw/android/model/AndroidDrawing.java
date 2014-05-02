@@ -1,5 +1,6 @@
 package isel.leic.poo.nrdraw.android.model;
 
+import java.io.InvalidClassException;
 import java.io.Serializable;
 
 import isel.leic.poo.nrdraw.model.Drawing;
@@ -8,9 +9,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 /**
- * Implementation of Drawing in Android needs to implement {@code Serializable} to be saved on Activity method "onSaveInstanceState"
+ * Implementation of Drawing in Android implements {@code Serializable} 
+ * to be saved on Activity method "onSaveInstanceState"
  * 
- * @author Nuno
+ * @author rcacheira & nreis
  *
  */
 public class AndroidDrawing extends Drawing implements AndroidDrawable, Serializable{
@@ -19,10 +21,21 @@ public class AndroidDrawing extends Drawing implements AndroidDrawable, Serializ
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public void draw(Canvas canvas, Paint brush){
+	/**
+	 * Draws Drawing on given canvas using given brush
+	 * @throws InvalidClassException 
+	 * 
+	 * @throws IllegalArgumentException if null canvas or null brush
+	 * @throws InvalidClassException if any line existent on list isn't an 
+	 * instance of AndroidLine
+	 */
+	public void draw(Canvas canvas, Paint brush) throws InvalidClassException{
 		if(brush == null || canvas  == null) throw new IllegalArgumentException();
 		if(getNrOfLines() > 0){
 			for (Line l : getLines()) {
+				if(!(l instanceof AndroidLine)){
+					throw new InvalidClassException("Line isn't an instance of Android Line");
+				}
 				((AndroidLine)l).draw(canvas, brush);
 			}
 		}
