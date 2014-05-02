@@ -36,17 +36,21 @@ public class NRDrawActivity extends Activity {
 	private class TouchBehaviour implements OnTouchListener{
 		@Override
 		public boolean onTouch(View v, MotionEvent event) {
-			switch(event.getAction()){
-				case MotionEvent.ACTION_DOWN:
-					actionDown(event);
-					break;
-				case MotionEvent.ACTION_MOVE:
-					actionUp(event);
-					break;
-				default:
-					return false;
+			int idx = event.findPointerIndex(0);
+			if(idx >= 0){
+				switch(event.getAction()){
+					case MotionEvent.ACTION_DOWN:
+						actionDown(event, idx);
+						break;
+					case MotionEvent.ACTION_MOVE:
+						actionUp(event, idx);
+						break;
+					default:
+						return false;
+				}
+				return true;
 			}
-			return true;
+			return false;
 		}
 	}
 	
@@ -70,21 +74,22 @@ public class NRDrawActivity extends Activity {
 		drawView.invalidate();
 	}
 	
-	private void actionDown(MotionEvent event){
-		createLine(new AndroidPoint(event.getX(0), event.getY(0)));
+	private void actionDown(MotionEvent event, int pointerIndex){
+		createLine(new AndroidPoint(event.getX(pointerIndex), event.getY(pointerIndex)));
 		drawView.invalidate();
 	}
 	
-	private void actionUp(MotionEvent event){
-		if(workingLine != null && (event.getX(0) < 0 || event.getY(0) < 0)){
+	private void actionUp(MotionEvent event, int pointerIndex){
+		float x = event.getX(pointerIndex), y= event.getY(pointerIndex);
+		if(workingLine != null && (x < 0 || y < 0)){
 			workingLine = null;
 		}
 		else{
 			if(workingLine == null){
-				createLine(new AndroidPoint(event.getX(0), event.getY(0)));
+				createLine(new AndroidPoint(x, y));
 			}
 			else{
-				workingLine.add(new AndroidPoint(event.getX(0), event.getY(0)));
+				workingLine.add(new AndroidPoint(x, y));
 			}
 			drawView.invalidate();
 		}
