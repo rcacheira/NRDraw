@@ -2,7 +2,6 @@ package isel.leic.poo.nrdraw.filesystem;
 
 import isel.leic.poo.nrdraw.model.Drawing;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,14 +38,5 @@ public abstract class Saver extends FileOperation{
 		PrintWriter p = new PrintWriter(fileOutputStream);
 		p.print(drawing);
 		p.close();
-	}
-
-	/**
-	 * Opens the {@code FileOutputStream} present in this class.
-	 * 
-	 * @throws FileNotFoundException if file cannot be opened for writing
-	 */
-	protected void openFile() throws FileNotFoundException{
-		fileOutputStream = new FileOutputStream(fileName, false);
 	}
 }

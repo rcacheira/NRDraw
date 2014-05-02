@@ -6,7 +6,6 @@ import isel.leic.poo.nrdraw.model.Line;
 import isel.leic.poo.nrdraw.model.Point;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -90,14 +89,5 @@ public abstract class Loader extends FileOperation{
 	 * @return New Point with the given coordinates
 	 */
 	protected abstract Point createPoint(float x, float y);
-	
-	/**
-	 * Opens the {@code FileInputStream} present in this class.
-	 * 
-	 * @throws FileNotFoundException when file does not exists on fileSystem
-	 */
-	protected void openFile() throws FileNotFoundException{
-		fileInputStream = new FileInputStream(fileName);
-	}
 	
 }

@@ -1,6 +1,8 @@
 package isel.leic.poo.nrdraw.filesystem;
 
 import isel.leic.poo.nrdraw.model.Drawing;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -36,6 +38,13 @@ public abstract class FileOperation {
 	 * @throws IOException
 	 */
 	protected abstract void doOperation() throws IOException;
+	
+	/**
+	 * Opens the {@code FileOutputStream} present in this class.
+	 * 
+	 * @throws FileNotFoundException if file cannot be opened for writing
+	 */
+	protected abstract void openFile() throws FileNotFoundException;
 	
 	/**
 	 * Parses a value on a String using our own notation schema
