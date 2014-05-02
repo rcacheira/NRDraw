@@ -150,7 +150,7 @@ public class NRDrawActivity extends Activity {
 		if(workingLine != null && (x < 0 || y < 0)){
 			workingLine = null;
 		}
-		else{
+		else if(x >= 0 && y >= 0){
 			if(workingLine == null){
 				createLine(new AndroidPoint(x, y));
 			}
